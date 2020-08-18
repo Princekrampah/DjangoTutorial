@@ -1,0 +1,9 @@
+{% extends "mysite/layout.html" %}
+{% block content %}
+<div class="content-section">
+    <h2>Logged Out</h2>
+    <small>
+        You have been logged out <a href="{% url 'login' %}">Login again</a>
+    </small>
+</div>
+{% endblock %}

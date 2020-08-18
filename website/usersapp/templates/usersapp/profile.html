@@ -1,0 +1,36 @@
+{% extends "mysite/layout.html" %} {% block content %}
+{% load crispy_forms_tags %}
+<div class="content-section">
+    <div>
+        <img src="{{ user.profile.profile_image.url }}" alt="" class="rounded-circle profile-img mb-4" />
+        <h2 class="border-bottom">
+            <a class="post-title" href="#">{{ user.username }}</a>
+        </h2>
+        <div class="profile-content">
+            <p class="border-bottom">Username: {{ user.username }}</p>
+            <p class="border-bottom">Email: {{ user.email }}</p>
+            <p class="border-bottom">location: {{ user.profile.locations }}</p>
+        </div>
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+                Edit profile
+            </button>
+        </p>
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ userUpdateForm|crispy }}
+                    {{ profileUpdateForm|crispy }}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-info">Update now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
